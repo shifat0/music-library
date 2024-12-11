@@ -8,14 +8,15 @@ import {
     Put,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
-import { creatSongDTO } from './dto/create-song-dto';
+import { createSongDTO } from './dto/create-song-dto';
 
 @Controller('songs')
 export class SongsController {
     constructor(private songsService: SongsService) {}
 
     @Post()
-    create(@Body() createSongDTO: creatSongDTO) {
+    create(@Body() createSongDTO: createSongDTO) {
+        console.log(createSongDTO);
         return this.songsService.create(createSongDTO);
     }
 

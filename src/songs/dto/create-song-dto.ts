@@ -6,7 +6,7 @@ import {
     IsString,
 } from 'class-validator';
 
-export class creatSongDTO {
+export class createSongDTO {
     @IsNotEmpty()
     @IsString()
     readonly title: string;
@@ -16,10 +16,14 @@ export class creatSongDTO {
     readonly artists: string[];
 
     @IsNotEmpty()
+    @IsString()
+    readonly lyrics: string;
+
+    @IsNotEmpty()
     @IsDateString()
-    readonly releaseDate: Date;
+    readonly release_date: Date;
 
     @IsNotEmpty()
     @IsMilitaryTime()
-    readonly duration: Date;
+    readonly duration: string;
 }
