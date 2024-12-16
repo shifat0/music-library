@@ -23,7 +23,7 @@ export class SongsService {
     }
 
     findAll() {
-        return this.songs;
+        return this.songRepository.find();
     }
 
     findOne(id: string) {
