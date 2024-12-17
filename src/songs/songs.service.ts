@@ -26,7 +26,7 @@ export class SongsService {
         return this.songRepository.find();
     }
 
-    findOne(id: string) {
-        return this.songs[id];
+    findOne(id: number): Promise<Songs> {
+        return this.songRepository.findOneBy({ id });
     }
 }

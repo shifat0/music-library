@@ -3,7 +3,9 @@ import {
     Controller,
     Delete,
     Get,
+    HttpStatus,
     Param,
+    ParseIntPipe,
     Post,
     Put,
 } from '@nestjs/common';
@@ -26,7 +28,15 @@ export class SongsController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
+    findOne(
+        @Param(
+            'id',
+            new ParseIntPipe({
+                errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
+            }),
+        )
+        id: number,
+    ) {
         return this.songsService.findOne(id);
     }
 
