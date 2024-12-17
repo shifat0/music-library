@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { createSongDTO } from './dto/create-song-dto';
+import { updateSongDTO } from './dto/update-song-dto';
 
 @Controller('songs')
 export class SongsController {
@@ -41,8 +42,11 @@ export class SongsController {
     }
 
     @Put(':id')
-    update(@Param('id') id: string) {
-        return `This is update song route: ${id}`;
+    update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() updateSongDTO: updateSongDTO,
+    ) {
+        return this.songsService.update(id, updateSongDTO);
     }
 
     @Delete(':id')
