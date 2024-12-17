@@ -46,7 +46,15 @@ export class SongsController {
     }
 
     @Delete(':id')
-    delete(@Param('id') id: string) {
-        return `This is delete song route: ${id}`;
+    delete(
+        @Param(
+            'id',
+            new ParseIntPipe({
+                errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
+            }),
+        )
+        id: number,
+    ) {
+        return this.songsService.remove(id);
     }
 }
