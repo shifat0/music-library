@@ -24,8 +24,13 @@ export class SongsController {
     }
 
     @Get()
-    findAll() {
-        return this.songsService.findAll();
+    async findAll() {
+        const songs = await this.songsService.findAll();
+
+        return {
+            message: 'All songs fetched successfully',
+            data: songs,
+        };
     }
 
     @Get(':id')
